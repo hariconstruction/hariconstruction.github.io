@@ -6,7 +6,7 @@ var ccm_animEffects = false;
 
 ccm_parseJSON = function(resp, onNoError) {
 	if (resp.error) {
-		alert(resp.message);	
+		alert(resp.message);
 	} else {
 		onNoError();
 	}
@@ -16,22 +16,22 @@ ccm_deactivateSite = function(onDone) {
 	if (ccm_siteActivated == false) {
 		return false;
 	}
-	
+
 	if ($("#ccm-overlay").length < 1) {
 		$(document.body).append('<div id="ccm-overlay"></div>');
 	}
-	
+
 	$("embed,object").each(function() {
 		$(this).attr('ccm-style-old-visibility', $(this).css('visibility'));
 		$(this).css('visibility', 'hidden');
 	});
-	
+
 	if (ccm_animEffects) {
 		$("#ccm-overlay").fadeIn(100);
 	} else {
 		$("#ccm-overlay").show();
 	}
-	
+
 	ccm_siteActivated = false;
 	if (typeof onDone == 'function') {
 		onDone();
@@ -44,7 +44,7 @@ ccm_activateSite = function() {
 	} else {
 		$("#ccm-overlay").hide();
 	}
-	
+
 	$("embed,object").each(function() {
 		$(this).css('visibility', $(this).attr('ccm-style-old-visibility'));
 	});
@@ -55,7 +55,7 @@ ccm_activateSite = function() {
 
 
 ccm_addHeaderItem = function(item, type) {
-	// "item" might already have a "?v=", so avoid invalid query string.
+	// "item" might already have a "%3Fv=", so avoid invalid query string.
 	var qschar = (item.indexOf('?') != -1 ? '' : '?ts=');
 	if (type == 'CSS') {
 		if (navigator.userAgent.indexOf('MSIE') != -1) {
